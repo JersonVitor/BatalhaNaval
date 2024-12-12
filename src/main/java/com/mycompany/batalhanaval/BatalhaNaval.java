@@ -4,6 +4,9 @@
 
 package com.mycompany.batalhanaval;
 
+import com.mycompany.batalhanaval.views.TelaPrincipal;
+import java.awt.EventQueue;
+
 /**
  *
  * @author usuario
@@ -11,11 +14,8 @@ package com.mycompany.batalhanaval;
 public class BatalhaNaval {
 
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
+        EventQueue.invokeLater(() -> {
+            new TelaPrincipal().setVisible(true);
         });
        
     }
