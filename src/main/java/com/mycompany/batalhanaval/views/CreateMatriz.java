@@ -191,7 +191,12 @@ public class CreateMatriz extends JFrame implements MatrizListener {
 
     private synchronized void checkMatrizesProntas(){
         if (this.matrizLocalPronta && this.matrizClienteRecebida){
-
+                new ViewGame(matrizLocal,matrizCliente).setVisible(true);
+                connection.setIpAndPorts(
+                        connection.getClientIp(),
+                        connection.getClientPort(),
+                        connection.getPortaLocal());
+                dispose();
         }
     }
 

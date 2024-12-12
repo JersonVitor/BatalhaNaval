@@ -23,14 +23,14 @@ public class Connection  {
 
     //porta fixa para o host do jogo
     private final static int portaServidor = 4567;
-
     //porta para cliente
     private final static int portaCliente = 6789;
     private final Object monitor = new Object();
-
     private static Boolean isHost;
     private volatile Boolean noFriends;
     private ServerListener server;
+    private MatrizConnection mConnection = MatrizConnection.getInstance();
+    private static Connection connection = Connection.getInstance();
 
     public Object getMonitor() {
         return monitor;
@@ -38,9 +38,15 @@ public class Connection  {
     public void serverConnection(ServerListener server){
         this.server = server;
     }
+     public static Connection getInstance() {
+        if(connection == null){
+            connection = new Connection();
+        }
+        return connection;
+     }
 
     //Conexão incial --------------------------------------------------
-    public static Boolean clientConnection(String ipCliente, int porta){
+    public Boolean clientConnection(String ipCliente, int porta){
        isHost = false;
         try{
             Socket socket = new Socket(ipCliente, porta);
@@ -55,7 +61,7 @@ public class Connection  {
             //Efetua a primitiva close
             socket.close();
             if (resp == 200){
-                MatrizConnection.setIpAndPorts(ipCliente,porta,portaCliente);
+                mConnection.setIpAndPorts(ipCliente,porta,portaCliente);
             }
             return resp == 200;
         }catch(Exception e){
@@ -91,7 +97,7 @@ public class Connection  {
                   DataOutputStream saida = new DataOutputStream(conexao.getOutputStream());
                   String resp = (server.isConnectionAccepted())?"200\n":"404\n";
                   if (server.isConnectionAccepted())
-                      MatrizConnection.setIpAndPorts(
+                      mConnection.setIpAndPorts(
                               inf.substring(inf.indexOf('/')+1, inf.indexOf(":")),
                               Integer.parseInt(inf.substring(inf.indexOf(":")+1)),portaServidor);
                   saida.writeBytes(resp);

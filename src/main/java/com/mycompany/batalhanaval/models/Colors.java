@@ -9,6 +9,7 @@ public class Colors {
     public static final Color CORBP = Color.PINK;
     public static final Color CORBM = Color.magenta;
     public static final Color CORBG = Color.orange;
+    public static final Color COR_ERRO = Color.RED;
     public static final Color COR_AGUA = Color.blue;
     public static final Color COR_DESTAQUE = Color.green;
 

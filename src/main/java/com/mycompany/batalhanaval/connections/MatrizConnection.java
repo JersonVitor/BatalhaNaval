@@ -21,6 +21,18 @@ public class MatrizConnection {
     private MatrizListener matrizListener;
     private static MatrizConnection instance = new MatrizConnection();
 
+    public String getClientIp() {
+        return clientIp;
+    }
+
+    public int getClientPort() {
+        return clientPort;
+    }
+
+    public int getPortaLocal() {
+        return portaLocal;
+    }
+
 
     public static MatrizConnection getInstance(){
             return instance;
@@ -140,7 +152,7 @@ public class MatrizConnection {
         }
     }
 
-    public static void setIpAndPorts(String ip, int portaC, int portaL){
+    public void setIpAndPorts(String ip, int portaC, int portaL){
         clientIp = ip;
         clientPort = portaC;
         portaLocal = portaL;

@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
  * @author usuario
  */
 public class Conexao extends javax.swing.JFrame {
-
+    
+    private Connection connection = Connection.getInstance();
     /**
      * Creates new form Conexão
      */
@@ -125,7 +126,7 @@ public class Conexao extends javax.swing.JFrame {
         String ip = IpCliente.getText();
         int porta = Integer.parseInt(Porta.getText());
         if(!Uteis.emptyFields(ip,porta)){
-            Boolean accepted= Connection.clientConnection(ip,porta);
+            Boolean accepted= connection.clientConnection(ip,porta);
             if(accepted){
                new CreateMatriz().setVisible(true);
             }else {
